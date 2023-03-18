@@ -1,0 +1,52 @@
+assign(max_seconds, 30).
+
+%set(binary_resolution).
+%set(print_gen).
+
+formulas(assumptions).
+%there is a lady in room 1, 2, or 3
+l1 | l2 | l3.
+%no lady in more than 1 room; the princess is unique
+    l1 -> -l2.
+    l1 -> -l3.
+    l2 -> -l1.
+    l2 -> -l3.
+    l3 -> -l1.
+    l3 -> -l2.
+
+%there is one tiger in room 1, 2, or 3
+t1 | t2 | t3.
+
+%there one empty room 
+e1 | e2 | e3.
+
+%no tiger and emptiness in the room where the lady stays
+l1 -> -t1 & -e1.
+l2 -> -t2 & -e2.
+l3 -> -t3 & -e3.
+
+%no emptiness in the room where the tiger stays
+t1 -> -e1.
+t2 -> -e2.
+t3 -> -e3.
+ 
+ 
+%clue on door #1: the room #3 is empty
+l1 -> e3.
+t1 -> -e3.
+e1 -> e3 | -e3.
+
+%clue on door #2: there is a tiger in room #1
+l2 -> t1.
+t2 -> -t1.
+e2 -> t1 | -t1.
+
+%clue on door #3: this room is empty
+l3 -> e3.
+t3 -> -e3.
+e3 -> e3 | -e3.
+
+end_of_list.
+
+formulas(goals).
+end_of_list.

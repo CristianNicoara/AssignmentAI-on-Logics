@@ -1,0 +1,19 @@
+assign(domain_size, 3).
+assign(max_models, -1).
+
+list(distinct).
+    [nicky, jared, antoine].
+    [nurse, accountant, electrician].
+end_of_list.
+
+formulas(assumptions).
+
+jared != electrician.
+antoine != electrician.
+antoine != accountant.
+
+
+end_of_list.
+
+formulas(goals).
+end_of_list.

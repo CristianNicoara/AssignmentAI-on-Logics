@@ -1,0 +1,33 @@
+assign(domain_size, 3).
+assign(max_models, -1).
+
+list(distinct).
+    [alice, rex, bob].
+end_of_list.
+
+formulas(assumptions).
+
+knave(x) <-> -knight(x).
+knight(x) <-> -knave(x).
+
+message1 -> knave(rex).
+message2 -> knight(bob).
+message3 -> knight(bob) | knight(alice).
+
+knave(alice) -> -message1 .
+knight(alice) -> message1.
+
+knight(rex) -> message2.
+knave(rex) -> -message2.
+
+knight(bob) -> message3.
+knave(bob) -> -message3.
+
+knave(alice) -> knight(rex).
+knave(rex) -> knave(bob).
+knave(bob) -> knave(alice).
+
+end_of_list.
+
+formulas(goals).
+end_of_list.

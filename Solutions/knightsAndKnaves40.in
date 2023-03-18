@@ -1,0 +1,32 @@
+assign(domain_size, 2).
+assign(max_models, -1).
+
+list(distinct).
+    [ALICE, ZED].
+end_of_list.
+
+formulas(assumptions).
+
+knave(x) <-> -knight(x).
+knight(x) <-> -knave(x).
+
+%knave(ALICE) | knight(ALICE).
+%knave(ZED) | knight(ZED).
+
+
+message1 -> knave(ZED) | knight(ALICE).
+message2 -> -knave(ALICE).
+
+%knave(ALICE) -> -message1 .
+knight(ALICE) -> message1.
+
+knight(ZED) -> message2.
+%knave(ZED) -> -message2.
+
+knave(ALICE) -> knight(ZED).
+knave(ZED) -> knave(ALICE).
+
+end_of_list.
+
+formulas(goals).
+end_of_list.

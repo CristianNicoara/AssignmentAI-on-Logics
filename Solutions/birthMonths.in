@@ -1,0 +1,28 @@
+assign(domain_size, 4).
+assign(max_models, -1).
+
+list(distinct).
+    [sara, ophelia, nora, dawn].
+    [september, october, november, december].
+end_of_list.
+
+formulas(assumptions).
+
+(sara = october) | (sara = november)  |(sara = december).
+(ophelia = september) | (ophelia = november)  |(ophelia = december).
+(nora = september) | (nora = october)  |(nora = december).
+(dawn = september) | (dawn = october)  |(dawn = november).
+
+sara != september.
+ophelia != october.
+nora != november.
+dawn != december.
+nora != october.
+nora != september.
+ophelia != september.
+
+
+end_of_list.
+
+formulas(goals).
+end_of_list.

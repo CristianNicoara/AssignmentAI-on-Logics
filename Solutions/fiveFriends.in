@@ -1,0 +1,49 @@
+assign(domain_size, 5).
+assign(max_models, -1).
+
+list(distinct).
+    [chris, joey, andy, kelsey, tina].
+end_of_list.
+
+formulas(assumptions).
+
+front(a,b).
+front(a,c).
+front(a,d).
+front(a,e).
+front(b,c).
+front(b,d).
+front(b,e).
+front(c,d).
+front(c,e).
+front(d,e).
+-front(a,a).
+-front(b,a).
+-front(c,a).
+-front(d,a).
+-front(e,a).
+-front(b,b).
+-front(c,b).
+-front(d,b).
+-front(e,b).
+-front(c,c).
+-front(d,c).
+-front(e,c).
+-front(d,d).
+-front(e,d).
+-front(e,e).
+
+front(x,y) -> -front(y,x).
+
+front(chris,andy) & front(andy,kelsey) & front(joey,tina) & front(joey,chris) &
+front(tina,andy) & front(chris,tina).
+-front(chris,chris).
+-front(andy,andy).
+-front(kelsey,kelsey).
+-front(joey,joey).
+-front(tina,tina).
+
+end_of_list.
+
+formulas(goals).
+end_of_list.

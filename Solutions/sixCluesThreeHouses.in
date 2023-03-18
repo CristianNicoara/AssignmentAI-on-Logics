@@ -1,0 +1,57 @@
+assign(domain_size, 3).
+assign(max_models, -1).
+
+formulas(assumptions).
+
+differentFrom(a,b).
+differentFrom(a,c).
+differentFrom(b,c).
+
+differentFrom(x,y) ->  differentFrom(y,x).
+
+rightNeighbor(a,b).
+rightNeighbor(b,c).
+-rightNeighbor(a,a).
+-rightNeighbor(a,c).
+-rightNeighbor(b,a).
+-rightNeighbor(b,b).
+-rightNeighbor(c,a).
+-rightNeighbor(c,b).
+-rightNeighbor(c,c).
+
+rightNeighbor(x,y) | rightNeighbor(y,x) <-> neighbor(x,y).
+
+blue(x) | green(x) | red(x).
+brazilian(x) | australian(x) | german(x).
+fishes(x) | cats(x) | dogs(x).
+football(x) | soccer(x) | basketball(x).
+
+red(x) & red(y) -> -differentFrom(x,y).
+blue(x) & blue(y) -> -differentFrom(x,y).
+green(x) & green(y) -> -differentFrom(x,y).
+
+brazilian(x) & brazilian(y) -> -differentFrom(x,y).
+australian(x) & australian(y) -> -differentFrom(x,y).
+german(x) & german(y) -> -differentFrom(x,y).
+
+fishes(x) & fishes(y) -> -differentFrom(x,y).
+cats(x) & cats(y) -> -differentFrom(x,y).
+dogs(x) & dogs(y) -> -differentFrom(x,y).
+
+football(x) & football(y) -> -differentFrom(x,y).
+soccer(x) & soccer(y) -> -differentFrom(x,y).
+basketball(x) & basketball(y) -> -differentFrom(x,y).
+
+german(c).
+-brazilian(b).
+dogs(x) <-> basketball(x).
+cats(x) & fishes(y) -> rightNeighbor(y,x).
+dogs(x) & green(y) -> rightNeighbor(y,x).
+football(x) & red(y) -> -neighbor(x,y).
+green(x) & red(y) -> -rightNeighbor(y,x).
+blue(x) & red(y) -> -rightNeighbor(y,x).
+
+end_of_list.
+
+formulas(goals).
+end_of_list.

@@ -1,0 +1,19 @@
+assign(domain_size, 4).
+assign(max_models, -1).
+
+list(distinct).
+    [jake, john, joe, jack].
+    [harrypotter, sherlockholmes, thehardyboys, lordoftherings].
+end_of_list.
+
+formulas(assumptions).
+
+
+(jack = harrypotter | jack = lordoftherings) & (john = harrypotter | john = lordoftherings) & (jake = sherlockholmes | jake = thehardyboys) & (joe = thehardyboys | joe = sherlockholmes).
+(joe = thehardyboys & joe != sherlockholmes) & (jake = sherlockholmes & jake != thehardyboys).
+(john = harrypotter & john != lordoftherings) & (jack = lordoftherings & jack != harrypotter).
+
+end_of_list.
+
+formulas(goals).
+end_of_list.
